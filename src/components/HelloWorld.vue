@@ -2,16 +2,8 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
-    <ul>
-        <li>
-            <a
-                href="https://vuejs.org"
-                target="_blank"
-            >
-                Core Docs
-            </a>
-        </li>
-    </ul>
+    <el-button @click="handleCopy(msg)">默认按钮</el-button>
+    <div class="text_box">32412412</div>
   </div>
 </template>
 
@@ -23,11 +15,20 @@ export default {
             msg: 'Welcome to Your Vue.js App',
         };
     },
+    methods:{
+        handleCopy() {
+            this.$copyText(this.msg).then(
+                e => {
+                    this.$message.success(this.msg)
+                }
+            )
+        }
+    }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style scoped lang="less">
     h1, h2 {
         font-weight: normal;
     }
@@ -41,5 +42,10 @@ export default {
     }
     a {
         color: #42b983;
+    }
+    .hello{
+        .text_box{
+            color: red;
+        }
     }
 </style>
