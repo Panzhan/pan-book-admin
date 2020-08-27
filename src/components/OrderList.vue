@@ -1,26 +1,26 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <el-button @click="handleCopy(msg)">默认按钮</el-button>
-    <el-button @click="handleGetData()">异步请求</el-button>
-    <el-button @click="handleClear()">清空请求</el-button>
-    <div class="text_box">32412412</div>
-  </div>
+    <div class="hello">
+        <h1>{{ msg }}</h1>
+        <el-button @click="handleCopy(msg)">复制文本</el-button>
+        <el-button @click="handleGetData()">异步请求</el-button>
+        <el-button @click="handleClear()">清空请求</el-button>
+        <div class="less_text">这是CSS预处理语言：Less，它扩展了CSS语言增加了变量，Mixin，函数等特性，使CSS更易维护和扩展。可以运行在Node或浏览器端</div>
+    </div>
 </template>
 
 <script>
 import axios from 'axios';
 export default {
-    name: 'HelloWorld',
+    name: 'OrderList',
     data() {
         return {
             timer: 10000,
             requestsCount: 1,
-            msg: 'Welcome to Your Vue.js App',
+            msg: 'Welcome to Page OrderList',
         };
     },
     created() {
-        
+        this.handleTest()
     },
     mounted() {
         // 定时执行
@@ -35,7 +35,7 @@ export default {
         handleCopy() {
             this.$copyText(this.msg).then(
                 e => {
-                    this.$message.success(this.msg)
+                    this.$message.success(this.msg + '' + '复制成功!')
                 }
             )
         },
@@ -51,6 +51,9 @@ export default {
         },
         handleClear(){
             location.reload();
+        },
+        handleTest() {
+
         }
     }
 };
@@ -59,7 +62,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
     .hello{
-        .text_box{
+        .less_text{
             color: red;
             margin-top: 20px;
         }
