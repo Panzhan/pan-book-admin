@@ -1,8 +1,9 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import Home from '@/Home';
 import BookList from '@/components/BookList';
 import OrderList from '@/components/OrderList';
-import Home from '@/Home';
+import BookManagement from '@/components/BookManagement';
 
 Vue.use(Router);
 
@@ -24,6 +25,11 @@ export default new Router({
                     path: '/order-list',
                     name: 'OrderList',
                     component: OrderList,
+                },
+                {
+                    path: '/book-management',
+                    name: 'BookManagement',
+                    component: BookManagement,
                 },
             ]
 

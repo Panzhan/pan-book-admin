@@ -90,7 +90,13 @@ export default {
                             id: '4',
                             icon: '',
                             title: '订单管理',
-                        }
+                        },
+                        {
+                            path: '/book-management',
+                            id: '5',
+                            icon: '',
+                            title: '图书管理',
+                        },
                     ]
                 }
             ],
