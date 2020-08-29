@@ -1,22 +1,85 @@
 <template>
     <div @scroll.passive="getScroll($event)" class="book-list">
-        <h1>{{ msg }}</h1>
+        <h2 style="margin-bottom: 10px;display: inline;">{{ title }}</h2>
+        <div @click="handleClick" class="user_shopping">
+            <i class="el-icon-shopping-cart-full"></i>
+        </div>
+        <el-form :inline="true" :model="formInline" class="form_container demo-form-inline">
+            <el-form-item label="价格">
+                <el-input :size="commonSize" v-model="formInline.price" placeholder="输入价格"></el-input>
+            </el-form-item>
+            <el-form-item label="书名">
+                <el-select :size="commonSize" v-model="formInline.book_name" placeholder="选择书名">
+                    <el-option
+                        v-for="item in bookNameList"
+                        :key="item.id"
+                        :label="item.name"
+                        :value="item.id"
+                    >
+                    </el-option>
+                </el-select>
+            </el-form-item>
+            <el-form-item label="类型">
+                <el-select :size="commonSize" v-model="formInline.book_type" placeholder="选择书籍类型">
+                    <el-option
+                        v-for="item in bookTypeList"
+                        :key="item.id"
+                        :label="item.name"
+                        :value="item.id"
+                    >
+                    </el-option>
+                </el-select>
+            </el-form-item>
+            <el-form-item label="作者">
+                <el-select :size="commonSize" v-model="formInline.author" placeholder="选择作者">
+                    <el-option
+                        v-for="item in bookAuthorList"
+                        :key="item.id"
+                        :label="item.name"
+                        :value="item.id"
+                    >
+                    </el-option>
+                </el-select>
+            </el-form-item>
+            <el-form-item>
+                <el-button :size="commonSize" type="primary" @click="handleSearch">查询</el-button>
+            </el-form-item>
+        </el-form>
+        <el-dialog
+            title=""
+            :visible.sync="dialogVisible"
+            width="30%"
+            :before-close="handleClose"
+        >
+            <span>这是一段信息</span>
+            <span slot="footer" class="dialog-footer">
+                <el-button @click="dialogVisible = false">取 消</el-button>
+                <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+            </span>
+        </el-dialog>
         <div class="max_box">
-            <el-card v-for="item in bookList" :key="item.idx" class="stick_box" shadow="always">
+            <el-card v-for="item in bookList" :key="item.idx" class="stick_box box-card" shadow="always">
                 <img
                     class="img_style"
                     :src="item.url"
                 />
-                <div style="padding: 0 12px;">
-                    <hr />
+                <span style="text-align: left;">{{item.book_name}}</span>
+                <div style="display: inline; float: right; font-size: 20px">
+                    <i class="el-icon-star-off"></i>
+                    <i class="el-icon-shopping-cart-2"></i>
                 </div>
+                <hr style="width: 100%" />
                 <div class="info_box_style">
-                    <!-- 第一个参数为值，第二个参数为键 -->
+                    <!-- v-for遍历map:第一个参数为值，第二个参数为键 -->
                     <div v-for="(val, key) in bookInfoList" :key="key" >
                         <p class="info_text">
                             {{ val }}
                         </p>
-                        <p class="info_num">{{ item[key] }}</p>
+                        <p class="info_num">
+                            {{ 
+                                key === 'book_price' ? '¥' + `${item[key]}` : item[key] 
+                            }}
+                        </p>
                     </div>
                 </div>
             </el-card>
@@ -26,81 +89,47 @@
 
 <script>
 import axios from 'axios';
+import CONFIG from '@/config/bookListConfig.js'
 export default {
     name: 'BookList',
     data() {
-        let imgUrl = 'https://img.bosszhipin.com/beijin/mcs/useravatar/20190503/2494a6ba5e588c099d3e2879839c44a89aa29a743879e40f3f4a1766e8ada82f_s.png'
         return {
-            msg: 'Welcome to Page BookList',
+            dialogVisible: false,
+            title: '',
+            commonSize: 'mini',
             bookInfoList: {
-                'book_name': '书名',
+                'book_author': '作者',
                 'book_price': '价格',
-                'book_author': '作者'
+                'book_sell': '销量',
+                'book_type_str': '类型',
             },
-            bookList: [
-                {
-                    idx: '0',
-                    id: '1',
-                    url: imgUrl,
-                    book_name: '十万个为什么（一）',
-                    book_price: '100',
-                    book_author: 'Sauron',
-                },
-                {
-                    idx: '1',
-                    id: '2',
-                    url: imgUrl,
-                    book_name: '十万个为什么（二）',
-                    book_price: '100',
-                    book_author: 'Sauron',
-                },
-                {
-                    idx: '2',
-                    id: '3',
-                    url: imgUrl,
-                    book_name: '十万个为什么（三）',
-                    book_price: '100',
-                    book_author: 'Sauron',
-                },
-                {
-                    idx: '3',
-                    id: '4',
-                    url: imgUrl,
-                    book_name: '十万个为什么（四）',
-                    book_price: '100',
-                    book_author: 'Sauron',
-                },
-                {
-                    idx: '4',
-                    id: '5',
-                    url: imgUrl,
-                    book_name: '十万个为什么（五）',
-                    book_price: '100',
-                    book_author: 'Sauron',
-                },
-                {
-                    idx: '5',
-                    id: '6',
-                    url: imgUrl,
-                    book_name: '十万个为什么（六）',
-                    book_price: '100',
-                    book_author: 'Sauron',
-                },
-                {
-                    idx: '6',
-                    id: '7',
-                    url: imgUrl,
-                    book_name: '十万个为什么（七）',
-                    book_price: '100',
-                    book_author: 'Sauron',
-                },
-            ]
+            bookNameList: [
+                {id: 0, name: '十万个为什么（一）'},
+                {id: 1, name: '十万个为什么（二）'}
+            ],
+            bookTypeList: [
+                {id: 0, name: '考古'},
+                {id: 1, name: '科技'}
+            ],
+            bookAuthorList: [
+                {id: 0, name: 'Sauron'},
+                {id: 1, name: 'Nicholas'}
+            ],
+            bookList: CONFIG.bookList,
+            formInline: {
+                price: '',
+                book_name: '',
+                book_type: '',
+                author: '',
+            }
         };
     },
     created() {
         this.handleTest()
     },
     mounted() {
+        this.title = this.$route.meta.label
+        console.log('this.$route', this.$route.meta)
     },
     methods:{
         getScroll(event) {
@@ -117,12 +146,21 @@ export default {
                 return;
             }
         },
+        handleClick() {
+            this.dialogVisible = true
+        },
+        handleClose() {
+
+        },
         handleCopy() {
             // this.$copyText(this.msg).then(
             //     e => {
             //         this.$message.success(this.msg + '' + '复制成功!')
             //     }
             // )
+        },
+        handleSearch() {
+            console.log('submit!');
         },
         handleGetData(){
             axios.get('https://api.coindesk.com/v1/bpi/currentprice.json', {})
@@ -147,11 +185,35 @@ export default {
         // border: 1px solid red;
         height: calc(100vh - 74px); //home里设置了padding，所以高度为：100vh - 54px - 10px - 10px
         overflow-y: auto;
+        .user_shopping{
+            display: inline;
+            float: right;
+            font-size: 30px;
+            cursor:pointer;
+            .el-icon-shopping-cart-full{
+                color: rgba(71, 71, 71, 1)
+            }    
+        }
+        .user_shopping:hover{
+            .el-icon-shopping-cart-full{
+                color: rgba(126,190,80,1)
+            }
+        }
+        .form_container{
+            margin-top: 10px;
+        }
         .max_box{
             display: flex;
             flex-wrap: wrap;
+            .el-card__body {
+                padding: 10px !important;
+            }
             .stick_box{
+                // border: 1px solid red;
                 position: relative;
+                .el-card__body {
+                    padding: 10px !important;
+                }
                 .img_style{
                     width: 100%;
                 }

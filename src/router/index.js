@@ -1,9 +1,11 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Home from '@/Home';
-import BookList from '@/components/BookList';
-import OrderList from '@/components/OrderList';
-import BookManagement from '@/components/BookManagement';
+import BookList from '@/views/bookList/bookList';
+import OrderList from '@/views/bookManagement/orderCenter';
+import BookManagement from '@/views/bookManagement/bookCenter';
+import UserCenter from '@/views/systemManagement/userCenter';
+import NotFound from '@/404';
 
 Vue.use(Router);
 
@@ -20,19 +22,52 @@ export default new Router({
                     path: '/book-list',
                     name: 'BookList',
                     component: BookList,
+                    meta: {
+                        label: '图书商城',
+                    }
                 },
                 {
-                    path: '/order-list',
+                    path: '/order-center',
                     name: 'OrderList',
                     component: OrderList,
+                    meta: {
+                        label: '订单管理',
+                    }
                 },
                 {
-                    path: '/book-management',
+                    path: '/book-center',
                     name: 'BookManagement',
                     component: BookManagement,
+                    meta: {
+                        label: '图书管理',
+                    }
+                },
+                {
+                    path: '/user-center',
+                    name: 'UserCenter',
+                    component: UserCenter,
+                    meta: {
+                        label: '用户管理',
+                    }
+                },
+                {
+                    path: '/not-found',
+                    name: 'NotFound',
+                    component: NotFound,
+                    meta: {
+                        label: '404',
+                    }
                 },
             ]
 
+        },
+        {
+            path: '/404',
+            name: '404',
+            component: NotFound,
+            meta: {
+                label: '404',
+            }
         },
     ],
 });

@@ -5,11 +5,11 @@
             <div class="home_top_title">
                 <h1>SBS</h1>
             </div>
-            <div @click="handleCopyUserName" class="home_top_user_name">
-                <h4>{{ user_name }}</h4>
+            <div @click="handleCopyUserName(userInfo.user_name)" class="home_top_user_name">
+                <h4>{{ userInfo.user_name }}</h4>
             </div>
             <div class="home_top_user_logo_container">
-                <img class="home_top_user_logo" width="100%" :src="user_logo" alt="">
+                <img class="home_top_user_logo" width="100%" :src="userInfo.user_logo" alt="">
             </div>
         </div>
 
@@ -27,15 +27,15 @@
             >
                 <template v-for="item in menuList">
                     <el-menu-item v-if="item.child_menus.length === 0" :index="item.path" :key="item.id">
-                        <i :class="item.icon"></i>
+                        <i style="margin-top: -4px;" :class="item.icon"></i>
                         <span slot="title">{{ item.title }}</span>
                     </el-menu-item>
                     <el-submenu v-else :index="item.path" :key="item.id">
                         <template slot="title">
-                            <i :class="item.icon"></i>
+                            <i style="margin-top: -4px;" :class="item.icon"></i>
                             <span slot="title">{{ item.title }}</span>
                         </template>
-                        <el-menu-item v-for="child in item.child_menus" :index="child.path" :key="child.id">
+                        <el-menu-item style="padding-left: 54px;" v-for="child in item.child_menus" :index="child.path" :key="child.id">
                             {{ child.title }}
                         </el-menu-item>
                     </el-submenu>
@@ -58,74 +58,49 @@
 
 <script>
 import axios from 'axios';
+import CONFIG from '@/config/homeRouterConfig.js'
 export default {
     name: 'HelloWorld',
     data() {
         return {
-            user_name: 'Sauron',
-            user_logo: 'https://img.bosszhipin.com/beijin/mcs/useravatar/20190503/2494a6ba5e588c099d3e2879839c44a89aa29a743879e40f3f4a1766e8ada82f_s.png',
-            menuList: [
-                {
-                    path: '/',
-                    id: '1',
-                    icon: 'el-icon-goods',
-                    title: '图书管理',
-                    child_menus: [
-                        {
-                            path: '/book-list',
-                            id: '3',
-                            icon: '',
-                            title: '图书首页',
-                        }
-                    ]
-                },
-                {
-                    path: '/2',
-                    id: '2',
-                    icon: 'el-icon-setting',
-                    title: '系统管理',
-                    child_menus: [
-                        {
-                            path: '/order-list',
-                            id: '4',
-                            icon: '',
-                            title: '订单管理',
-                        },
-                        {
-                            path: '/book-management',
-                            id: '5',
-                            icon: '',
-                            title: '图书管理',
-                        },
-                    ]
-                }
-            ],
-            isCollapse: false
+            userInfo: CONFIG.userInfo,
+            menuList: CONFIG.menuList,
+            isCollapse: false,
+            SauronMeun: ['1','2','3','5','6']
         };
     },
     created() {
         let path = this.$route.path
-        console.log('this.$router', this.$route.path)
+        // console.log('this.$router', this.$route.path)
         if(path === '/') {
             this.$router.push('/book-list');
         }
+        this.getUserInfo()
     },
     mounted() {
+        localStorage.setItem(`${this.user_name}-info`, JSON.stringify(this.SauronMeun));
     },
     methods:{
-        handleCopyUserName() {
-            this.$copyText(this.user_name).then(
+        handleCopyUserName(val) {
+            this.$copyText(val).then(
                 e => {
-                    this.$message.success('用户姓名'+ this.user_name + '复制成功!')
+                    this.$message.success('用户姓名'+ val + '复制成功!')
                 }
             )
         },
-        handleOpen() {
-
+        handleOpen() {},
+        handleClose() {},
+        getUserInfo(){
+            // axios.get('https://run.mocky.io/v3/4552b124-dead-4f6a-b965-adc5947bc0a6', {})
+            // .then(res => {
+            //     console.log('res', res)
+            //     this.user_logo = res.data.user_logo;
+            //     this.user_name = res.data.user_name
+            // })
+            // .catch(function (error) {
+            //     console.log(error);
+            // });
         },
-        handleClose() {
-
-        }
     }
 };
 </script>
@@ -133,6 +108,8 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
     .home_max_container{
+        width: 100%;
+        overflow-x: hidden;
         .home_top_container{
             display: flex;
             width: 100%;
@@ -140,7 +117,7 @@ export default {
             line-height: 54px;
             background-color: rgba(40, 36, 33, 1);
             .home_top_title{
-                padding-left: 10px;
+                padding-left: 22px;
                 color: rgba(146, 121, 102, 1);
             }
             .home_top_user_name{
@@ -150,10 +127,10 @@ export default {
                 cursor:pointer;
             }
             .home_top_user_logo_container{
-                margin-top: 4px;
+                margin-top: 6px;
                 border-radius: 50%;
-                width: 45px;
-                height: 45px;
+                width: 40px;
+                height: 40px;
                 border: 1px solid black;
                 position: absolute;
                 right: 10px;
@@ -163,7 +140,7 @@ export default {
             }
         }
         .home_menu_container{
-            border-right: 1px solid rgba(221, 221, 221, 1);
+            border-right: 1px solid rgba(236, 238, 244, 1);
             height: calc(100vh - 54px);
             float: left;
             width: 200px;
@@ -194,7 +171,9 @@ export default {
         }
         .main_content{
             // border: 1px solid red;
+            width: calc(100% - 220px);
             padding: 10px 10px;
+            padding-right: 5px;
             position: absolute;
             left: 200px;
         }
