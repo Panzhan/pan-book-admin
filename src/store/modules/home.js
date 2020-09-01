@@ -5,15 +5,13 @@ const state = {
     testDate: [
         { id: 1, title: '今日' },
     ],
+    paymentFilterColumn: []
 };
 
 const getters = {
     // paymentFilterColumn: state => {
     //     return state.paymentFilterColumn;
     // },
-    // paymentFilterColumnVersion: state => {
-    //     return state.paymentFilterColumnVersion;
-    // }
 };
 
 const actions = {

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <title>pan-book-admin</title>
+    </head>
+    <body>
+    </body>
+</html>
+
+<script>
+    // function makeFunc() {
+    //     var name = "Mozilla";
+    //     function displayName() {
+    //         console.log('内部变量', name);
+    //     }
+    //     return displayName;
+    // }
+
+    // var myFunc = makeFunc();
+    // myFunc();
+
+    function makeAdder(x) {
+        return function(y) {
+            return x + y;
+        };
+    }
+
+    var add5 = makeAdder(5);
+    var add10 = makeAdder(10);
+
+    console.log(add5(2));  // 7
+    console.log(add10(2)); // 12
+</script>

@@ -4,12 +4,23 @@
         <div @click="handleClick" class="user_shopping">
             <i class="el-icon-shopping-cart-full"></i>
         </div>
-        <el-form :inline="true" :model="formInline" class="form_container demo-form-inline">
+        <el-form :inline="true" :model="form" class="form_container demo-form-inline">
             <el-form-item label="价格">
-                <el-input :size="commonSize" v-model="formInline.price" placeholder="输入价格"></el-input>
+                <el-input 
+                    :size="commonSize" 
+                    v-model="form.price" 
+                    placeholder="输入价格"
+                    @input="handleInputChange(form.price)"
+                >
+                </el-input>
             </el-form-item>
             <el-form-item label="书名">
-                <el-select :size="commonSize" v-model="formInline.book_name" placeholder="选择书名">
+                <el-select 
+                    :size="commonSize" 
+                    v-model="book_name" 
+                    placeholder="选择书名"
+                    @change="handleSelectChange($event, 'book_name')"
+                >
                     <el-option
                         v-for="item in bookNameList"
                         :key="item.id"
@@ -20,7 +31,12 @@
                 </el-select>
             </el-form-item>
             <el-form-item label="类型">
-                <el-select :size="commonSize" v-model="formInline.book_type" placeholder="选择书籍类型">
+                <el-select 
+                    :size="commonSize" 
+                    v-model="book_type" 
+                    placeholder="选择书籍类型"
+                    @change="handleSelectChange($event, 'book_type')"
+                >
                     <el-option
                         v-for="item in bookTypeList"
                         :key="item.id"
@@ -31,7 +47,12 @@
                 </el-select>
             </el-form-item>
             <el-form-item label="作者">
-                <el-select :size="commonSize" v-model="formInline.author" placeholder="选择作者">
+                <el-select 
+                    :size="commonSize" 
+                    v-model="author" 
+                    placeholder="选择作者"
+                    @change="handleSelectChange($event, 'author')"
+                >
                     <el-option
                         v-for="item in bookAuthorList"
                         :key="item.id"
@@ -90,6 +111,7 @@
 <script>
 import axios from 'axios';
 import CONFIG from '@/config/bookListConfig.js'
+import debounce from 'lodash/debounce';
 export default {
     name: 'BookList',
     data() {
@@ -116,7 +138,11 @@ export default {
                 {id: 1, name: 'Nicholas'}
             ],
             bookList: CONFIG.bookList,
-            formInline: {
+            price: '',
+            book_name: '',
+            book_type: '',
+            author: '',
+            form: {
                 price: '',
                 book_name: '',
                 book_type: '',
@@ -146,6 +172,13 @@ export default {
                 return;
             }
         },
+        handleSelectChange(val, type) {
+            this.form[type] = this[type]
+            this.handleSearch()
+        },
+        handleInputChange: debounce(function(value) {
+            this.handleSearch();
+        }, 1000),
         handleClick() {
             this.dialogVisible = true
         },
