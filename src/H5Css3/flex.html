@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <title>pan-book-admin</title>
+    </head>
+    <body>
+        <div class=" container container_flex">
+            <div class="child_first_flex common">child_first_flex</div>
+            <div class="child_second_flex common">child_second_flex</div>
+            <div class="child_third_flex common">child_third_flex</div>
+        </div>
+    </body>
+</html>
+
+<style>
+    html,
+    body{
+        height: 100%;
+        padding: 0;
+        margin: 0;
+    }
+    .container{
+        border: 1px solid red;
+        width: 600px;
+        height: 600px;
+    }
+    .container_flex{
+        display: flex;
+    }
+    .common{
+        border: 1px solid black;
+    }
+    .child_first_flex{
+       
+        
+    }
+    .child_second_flex{
+        flex: 0
+    }
+    .child_third_flex{
+        
+    }
+
+</style>
+
+<script>
+    arr = [1,31,11,2,3,23]
+    // s = 0;
+    // for (i = (arr.length - 1); i > -1; i--) {
+    //     res[s] = arr[i];
+    //     s++;
+    // }
+    // console.log(arr);
+    // console.log(res);
+
+    function bSort(arr) {
+        var len = arr.length;
+        for (let i = 0; i < len-1; i++) {
+            for (let j = 0; j < len - 1 - i; j++) {
+                // 相邻元素两两对比，元素交换，大的元素交换到后面
+                if (arr[j] > arr[j + 1]) {
+                    let temp = arr[j];
+                    arr[j] = arr[j+1];
+                    arr[j+1] = temp;
+                }
+            }
+        }
+        return arr;
+    }
+    // console.log(bSort(arr))
+
+    /**
+ * @param {string} text
+ * @return {number}
+ */
+
+let max
+var printNumbers = function(n) {
+    if(n===1){
+        return max
+    }
+    return printNumbers(n-1)*9
+};
+console.log(printNumbers(2));
+</script>

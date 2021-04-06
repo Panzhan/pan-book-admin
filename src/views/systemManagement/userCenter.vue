@@ -17,7 +17,7 @@ export default {
                 book_name: '',
                 book_type: '',
                 author: '',
-            }
+            },
         };
     },
     created() {
@@ -27,13 +27,6 @@ export default {
         console.log('this.$route', this.$route.meta)
     },
     methods:{
-        handleCopy() {
-            // this.$copyText(this.msg).then(
-            //     e => {
-            //         this.$message.success(this.msg + '' + '复制成功!')
-            //     }
-            // )
-        },
         handleSearch() {
             console.log('submit!');
         },

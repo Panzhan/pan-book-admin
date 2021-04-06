@@ -44,6 +44,10 @@
         </div>
 
         <!-- 主体内容 -->
+        <!-- <div>
+            <span>{{ oobbjj.c }}</span>
+            <button @click="change">变数据 </button>
+        </div> -->
         <div class="main_content">
             <transition name="fade" mode="out-in">
                 <router-view
@@ -66,6 +70,11 @@ export default {
     name: 'HelloWorld',
     data() {
         return {
+            aas: ["ss","ddd","fff","bbb"],
+            oobbjj: {
+                a: 1,
+                b: 2
+            },
             userInfo: CONFIG.userInfo,
             menuList: CONFIG.menuList,
             isCollapse: false,
@@ -92,6 +101,16 @@ export default {
     methods:{
         ...mapActions(VUEX_KEY, ['updateString', 'updateDate']
         ),
+        change(){
+        // 点击按钮时，改变aas的最后一个元素，
+        // 数据变了 但是view没有更新
+            // this.aas[3] = 444;
+            // this.aas = ["ss","ddd","fff","bbb","www"]
+            this.aas[6] = "222"
+            this.oobbjj.c = 23
+            console.log(this.oobbjj, 'oobbjj')
+            // console.log(this.aas, '12341243123')
+        },
         handleTestVuexText() { 
             let paramsStr = 'string2'
             this.updateString(paramsStr).then(

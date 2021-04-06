@@ -5,6 +5,15 @@
             <i class="el-icon-shopping-cart-full"></i>
         </div>
         <el-form :inline="true" :model="form" class="form_container demo-form-inline">
+            <el-form-item label="测试">
+                <el-input 
+                    :size="commonSize" 
+                    v-model="form.test" 
+                    placeholder="测试输入框"
+                    @input="handleInputChange(form.price)"
+                >
+                </el-input>
+            </el-form-item>
             <el-form-item label="价格">
                 <el-input 
                     :size="commonSize" 
@@ -147,6 +156,8 @@ export default {
                 book_name: '',
                 book_type: '',
                 author: '',
+                test:[1,2,3],
+                // test:'123'
             }
         };
     },
@@ -193,6 +204,9 @@ export default {
             // )
         },
         handleSearch() {
+            // this.form.test[1]=41
+            this.$set(this.form.test, 1, 444); //$set 可以触发更新视图
+            // this.form.test = '134'
             console.log('submit!');
         },
         handleGetData(){

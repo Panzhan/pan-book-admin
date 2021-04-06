@@ -58,24 +58,6 @@ export default {
                 return [];
             }
         },
-        leftAlian: {
-            type: Array,
-            default: function() {
-                return [];
-            }
-        },
-        rightAlian: {
-            type: Array,
-            default: function() {
-                return [];
-            }
-        },
-        centerAlian: {
-            type: Array,
-            default: function() {
-                return [];
-            }
-        },
         orderAlianConfig: {
             type: Object,
             default: function() {

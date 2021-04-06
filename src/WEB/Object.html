@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <title>pan-book-admin</title>
+    </head>
+    <body>
+    </body>
+</html>
+
+<script>
+    var person = new Object()
+    person.name = 'nicholas'
+    person.age = 29
+
+    var person1 = {}
+    person1.name = 'nicholas'
+    person1.age = 29
+
+    var person2 = {
+        name: 'nicholas',
+        age: 29
+    }
+
+    function dispalyInfo(args) {
+        var output = "";
+        if (typeof args.name == 'string') {
+            output += 'name:' + args.name + '\n'
+        }
+        if (typeof args.age == 'number') {
+            output += 'age:' + args.age + '\n'
+        }
+        alert(output)
+    }
+    dispalyInfo({
+        name: 'niocholas',
+        age: 29
+    })
+</script>

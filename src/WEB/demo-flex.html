@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <title>pan-book-admin</title>
+    </head>
+    <body>
+        <!-- <div class="container">
+            <div class="child_first common">child_first</div>
+            <div class="child_second common">child_second</div>
+            <div class="child_third common">child_third</div>
+        </div> -->
+    </body>
+</html>
+
+<style>
+    body{
+        padding: 0px;
+        margin: 0px;
+    }
+    .container{
+        display: flex;
+        background-color: cornflowerblue;
+    }
+    .child_first{
+        background: red;
+    }
+    .child_second{
+        background: greenyellow;
+        flex: 1;
+    }
+    .child_third{
+        background: green;
+    }
+
+</style>
+
+<script>
+    // sum(1)(2)(3) // 6
+    // sum(1)(2)(3)...(n) // 1+2+...+n
+    // sum(1)(2)(3)...(n)() // 1+2+...+n
+
+    // function curry(a) {
+    //     return function(b){
+    //         return function(c){
+    //             return a+b+c
+    //         }
+    //     }
+    // }
+
+    // function sums(a) {
+    //     let result = a;
+    //     return function add(b) {
+    //         console.log(arguments.length);
+    //         if (arguments.length) {
+    //             result+=b;
+    //             return add;
+    //         }
+    //         return result;
+    //     }
+    // }
+    // console.log(sums(1)(2)(3)())
+    // let res = curry(1)(2)(3)
+    // console.log(res);
+
+
+    // Person(构造函数) --prototype -->  Person.prototype(实例原型)
+    //     ｜                              |
+    //     ｜                              |
+    //     （创建实例）                      (__proto__)
+    //     ｜                              |
+    //     ｜                              |
+    // person(实例) ------------------------
+
+
+    //宏任务
+    //微任务
+
+    //
+    // console.log("script start");
+    // setTimeout(function() {
+    //     console.log("setTimeout---0");
+    // }, 0);
+
+    // setTimeout(function() {
+    //     console.log("setTimeout---200");
+    //     setTimeout(function() {
+    //         console.log("inner-setTimeout---0");
+    //     });
+    //     Promise.resolve().then(function() {
+    //         console.log("promise5");
+    //     });
+    // }, 200);
+
+    // Promise.resolve()
+    // .then(function() {
+    //     console.log("promise1");
+    // })
+    // .then(function() {
+    //     console.log("promise2");
+    // });
+
+    // Promise.resolve().then(function() {
+    //     console.log("promise3");
+    // });
+    // console.log("script end");
+
+
+    //宏任务
+    //微任务
+
+    // console.log('script start')
+    // async function async1() {
+    //     await async2()
+    //     console.log('async1 end')
+    // }
+    // async function async2() {
+    //     console.log('async2 end') 
+    // }
+    // async1()
+    // setTimeout(function() {
+    //     console.log('setTimeout')
+    // }, 0)
+    // new Promise(resolve => {
+    //     console.log('Promise')
+    //     resolve()
+    // })
+    // .then(function() {
+    //     console.log('promise1')
+    // })
+    // .then(function() {
+    //     console.log('promise2')
+    // })
+    // console.log('script end')
+
+
+
+// 微任务 
+// 宏任务 h6
+
+
+// 1 4 7 5 11 2 3 10 6 9 13 8 12
+    // console.log(1);
+
+    // setTimeout(() => { //h1
+    //     console.log(2);
+    //     setTimeout(() => { //h5
+    //         console.log(8);
+    //     })
+    //     Promise.resolve().then(() => {
+    //         console.log(3) //w3
+    //     });
+    // });
+
+    
+    // new Promise((resolve, reject) => {
+    //     console.log(4)
+    //     setTimeout(() => {  //h2
+    //         console.log(10);
+    //     })
+    //     resolve()
+    // }).then(() => { //w1
+    //     console.log(5);
+    //     Promise.resolve().then(() => {
+    //         console.log(11) //w2
+    //     });
+    //     setTimeout(() => { 
+    //         console.log(13); //h4
+    //     })
+    // })
+
+    // setTimeout(() => { //h3
+    //     Promise.resolve().then(() => {
+    //         console.log(9) //w5
+    //     });
+    //     console.log(6);
+    //     setTimeout(() => {
+    //         console.log(12); //h6
+    //     })
+    // })
+    // console.log(7);
+
+
+
+
+    
+    // function Person() {
+
+    // }
+    // // 虽然写在注释里，但是你要注意：
+    // // prototype是函数才会有的属性
+    // Person.prototype.name = 'Kevin';
+    // var person1 = new Person();
+    // var person2 = new Person();
+    // console.log(person1.name) // Kevin
+    // console.log(person2.name) // Kevin
+    
+
+
+</script>

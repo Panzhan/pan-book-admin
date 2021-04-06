@@ -6,7 +6,7 @@
         <title>pan-book-admin</title>
     </head>
     <body>
-        <h3>
+        <!-- <h3>
             所谓Promise，简单说就是一个容器，里面保存着某个未来才会结束的事件（通常是一个异步操作）的结果。
             从语法上说，Promise 是一个对象，从它可以获取异步操作的消息。
             Promise 提供统一的 API，各种异步操作都可以用同样的方法进行处理。Promise对象有以下两个特点。
@@ -24,25 +24,163 @@
             如果改变已经发生了，你再对Promise对象添加回调函数，也会立即得到这个结果。
             这与事件（Event）完全不同，事件的特点是，如果你错过了它，再去监听，是得不到结果的。
         </h3>
-        <h3>ES6 规定，Promise对象是一个构造函数，用来生成Promise实例。</h3>
+        <h3>ES6 规定，Promise对象是一个构造函数，用来生成Promise实例。</h3> -->
     </body>
 </html>
 
 <script>
-    const promise = new Promise((resolve, reject) => {
-        // ... some code
-        let result = 'resolve' //假设请求成功
-        if (result === 'resolve'){
-            resolve(result);
-        } else {
-            reject(error);
-        }
-    });
-    promise.then(res => {
-        console.log('res', res)
-    })
-    promise.catch(err => {
-        console.log('err', err)
-    })
-    console.log('promise', promise)
+    // const promise = new Promise((resolve, reject) => {
+    //     // ... some code
+    //     let result = 'resolve' //假设请求成功
+    //     if (result === 'resolve'){
+    //         resolve(result);
+    //     } else {
+    //         reject(error);
+    //     }
+    // });
+    // promise.then(res => {
+    //     console.log('res', res)
+    // })
+    // promise.catch(err => {
+    //     console.log('err', err)
+    // })
+    // console.log('promise', promise)
+    // let url
+    // function req(methods,url,data){
+    //     if(methods === 'get'){
+    //         var promise = new Promise((resolve, reject)=>{
+    //             var that = this
+    //             uni.request({
+    //                 url: url,
+    //                 data,
+    //                 methods,
+    //                 dataType: 'json',
+    //                 header:{
+    //                     'content-type':'application/json'
+    //                 },
+    //                 success: function(res){
+    //                     console.log('res', res)
+    //                     if(res.statusCode === 200){
+    //                         resolve(res.data)
+    //                     }else{
+    //                         resolve(res.data)
+    //                     }
+    //                 },
+    //                 error: function(e){
+    //                     reject(e)
+    //                 }
+    //             })
+    //         })
+    //         return promise
+    //     }else{
+    //         var promise = new Promise((resolve, reject)=>{
+    //             var that = this
+    //             uni.request({
+    //                 url: url,
+    //                 data,
+    //                 methods,
+    //                 header:{
+    //                     'content-type': 'application/x-www-form-urlencoded',
+    //                     token: uni.getStorageSync('token')
+    //                 },
+    //                 success: function(res){
+    //                     console.log('res', res)
+    //                     if(res.statusCode === 200){
+    //                         resolve(res.data)
+    //                     }else{
+    //                         resolve(res.data.msg)
+    //                     }
+    //                 },
+    //                 error: function(e){
+    //                     reject(e)
+    //                 }
+    //             })
+    //         })
+    //         return promise
+    //     }
+    // }
+
+
+    // const promise = new Promise((resolve, reject) =>{
+    //     console.log(1)
+    //     resolve(console.log(5));
+    //     console.log(2)
+    // })
+    // promise.then(()=>{
+    //     console.log(3)
+    // })
+    // console.log(4) //1 2 4 3
+
+
+    // const promise = new Promise((resolve, reject)=>{
+    //     resolve('success1')
+    //     reject('error')
+    //     resolve('success2')
+    // })
+
+    // promise.then((res)=>{
+    //     console.log('then:', res)
+    // }).catch((err)=>{
+    //     console.log("catch:", errr)
+    // }) //success1 
+
+
+
+
+
+    // Promise.resolve(1)
+    //     .then(2)
+    //     .then(Promise.resolve(3))
+    //     .then(console.log) //1
+
+    // 红灯三秒亮次，黄灯两秒亮一次，绿灯一秒亮一次
+    // function red(){
+    //     console.log('red')
+    // }
+    // function green(){
+    //     console.log('green')
+    // }
+    // function yellow(){
+    //     console.log('yellow')
+    // }
+    // var light = function (timer, cb){
+    //     return new Promise(function(resolve, reject){
+    //         setTimeout(function(){
+    //             cb();
+    //             resolve();
+    //         },timer)
+    //     })
+    // }
+    // var step = function(){
+    //     Promise.resolve().then(function(){
+    //         return light(3000, red)
+    //     }).then(function(){
+    //         return light(2000, green)
+    //     }).then(function(){
+    //         return light(1000, yellow)
+    //     }).then(function(){
+    //         step()
+    //     })
+    // }
+    // step()
+    // arr[j] = [arr[j + 1], arr[j + 1] = arr[j]][0] => arr[j]=arr[j+1]
+    // var arr = [1,2,3,9,5,7,6,8,4]
+    // function sorts(arr){
+    //     var len=arr.length-1;
+    //     for(var i=0;i<len;i++){
+    //         for(var j=0;j<len-i;j++){
+    //             if(arr[j]>arr[j+1]){
+    //             var temp=arr[j+1];
+    //                 arr[j+1]=arr[j];
+    //                 arr[j]=temp;
+    //             }
+    //         }
+    //     }
+    //     return arr
+    // }
+    // console.log(sorts(arr));
+    
+    console.log([] == 'undefined')
+
+
 </script>

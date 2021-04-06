@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <title>pan-book-admin</title>
+    </head>
+    <body>
+    </body>
+</html>
+
+<script>
+    let subscriber = {} //定义发布者
+    subscriber.list = []    //缓存列表 存放订阅者回调函数
+
+    //增加订阅着
+    subscriber.listen = function(fn){
+        subscriber.list.push(fn)    //订阅者消息添加到缓存列表
+    }
+
+    //发布消息
+    subscriber.tigger = function(){
+        for(var i = 0,fn;fn = this.list[i++];){
+            fn.apply(this, arguments);
+        }
+    }
+
+    //小明订阅消息
+    subscriber.listen(function(color, size){
+        console.log('xiaoming color is:' + color);
+        console.log('xiaoming size is:' + size)
+    })
+
+    //小鹏订阅消息如下
+    subscriber.listen(function(color, size){
+        console.log('xiaopeng color is:' + color)
+        console.log('xiaopeng size is:' + size)
+    })
+
+    subscriber.tigger('红色', 40)
+    subscriber.tigger('黑色', 80)
+
+
+</script>
