@@ -6,36 +6,67 @@
         <title>pan-book-admin</title>
     </head>
     <body>
+        模板引擎(JQuery):模版+数据=>Html字符串<br>
+        lodash.template 函数:<br>
+        const compiler = template('<h1>')
+        <br><br><br>
+        Vue 或 React:模版+数据=>Virtual Dom<br>
     </body>
 </html>
-
+    
 <script>
-    // function makeFunc() {
-    //     var name = "Mozilla";
-    //     function displayName() {
-    //         console.log('内部变量', name);
-    //     }
-    //     return displayName;
-    // }
+//vue中，一个组件最核心的是render函数，他可以直接产出html字符串
+//借助snabbdom，import { h } from 'snabbdom'，可以产出Virtual Dom
 
-    // var myFunc = makeFunc();
-    // myFunc();
+//为什么组件要直接从产出html变为产出Virtual Dom？
+//因为Virtual Dom带来了分层设计
+//他对渲染过程的抽象，上碟框架可以渲染到web之外的平台，以及实现SSR
 
-    function makeAdder(x) {
-        return function(y) {
-            return x + y;
-        };
-    }
+//vnode是真实Dom的描述，如一个div标签
+//const elementVnode = { tag: 'div'}
+//要把 elementVnode 转化成真实dom，需要一个渲染器（Renderer）
+//function render(vnode, container){}
+//把 elementVnode 渲染到 id 为 app 的元素下
+//render(elementVnode, document.getElementById('app'))
+//template --（compile）-> 渲染函数 --（render）--> 虚拟DOM --（创建）--> 真实dom
 
-    var add5 = makeAdder(5);
-    var add10 = makeAdder(10);
 
-    console.log(add5(2));  // 7
-    console.log(add10(2)); // 12
 
-    // 数据类型
-    // event loop
-    // 实现深拷贝
-    // 小程序api
-    // vue-router 两种模式及区别
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </script>

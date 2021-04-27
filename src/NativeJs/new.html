@@ -10,44 +10,56 @@
 </html>
 
 <script>
-function create(){
-  // 创建空对象
-  let obj = new Object()
-  // 获得构造函数
-  let Con = [].shift.call(arguments)
-  //等同于
-  // let Con = Array.prototype.slice.call(arguments)
+// function create(){
+//   // 创建空对象
+//   let obj = new Object()
+//   // 获得构造函数
+//   let Con = [].shift.call(arguments)
+//   //等同于
+//   // let Con = Array.prototype.slice.call(arguments)
 
-  // 连接到原型
-  obj.__proto__ = Con.prototype
-  // 绑定this，执行构造函数
-  let res = Con.apply(obj, arguments)
-  // 确保new出来的是个对象
-  return typeof res === 'object' ? res : obj
+//   // 连接到原型
+//   obj.__proto__ = Con.prototype
+//   // 绑定this，执行构造函数
+//   let res = Con.apply(obj, arguments)
+//   // 确保new出来的是个对象
+//   return typeof res === 'object' ? res : obj
+// }
+
+// function newOperator(ctor){
+//   if(typeof ctor!== 'function'){
+//     throw 'newOperator function the first param must be a function';
+//   }
+//   var args = Array.prototype.slice.call(arguments, 1);
+//   // 1.创建空对象
+//   var obj = {}
+//   // 2.将新建对象的__proto__链接到 该函数（这里是构造函数）原型对象的prototype上
+//   obj.__proto__ = ctor.prototype
+//   // 3.将步骤1新创建的对象作为this的上下文
+//   var result = ctor.apply(obj, args)
+
+//   return (typeof result === 'object' && result !== null) || typeof result === 'function' ? result : obj
+// }
+
+// function Car(a,b,c){
+//   this.a = a
+//   this.b = b
+//   this.c = c
+// }
+
+// var car1 = newOperator(Car, 'aaa', 'bbbb', 'ccccc')
+// console.log('car1', car1)
+
+
+function newOperator(args){
+    if(typeof args !== 'function'){
+        throw 'newOperator function the first params must be a function'
+    }
+    var _args = Array.prorttype.slice.call(arguments, 1)
+    var obj = {}
+    obj.__proto__ = args.prorttype
+    var res = args.apply(obj, _args)
+    return res
 }
-
-function newOperator(ctor){
-  if(typeof ctor!== 'function'){
-    throw 'newOperator function the first param must be a function';
-  }
-  var args = Array.prototype.slice.call(arguments, 1);
-  // 1.创建空对象
-  var obj = {}
-  // 2.将新建对象的__proto__链接到 该函数（这里是构造函数）原型对象的prototype上
-  obj.__proto__ = ctor.prototype
-  // 3.将步骤1新创建的对象作为this的上下文
-  var result = ctor.apply(obj, args)
-
-  return (typeof result === 'object' && result !== null) || typeof result === 'function' ? result : obj
-}
-
-function Car(a,b,c){
-  this.a = a
-  this.b = b
-  this.c = c
-}
-
-var car1 = newOperator(Car, 'aaa', 'bbbb', 'ccccc')
-console.log('car1', car1)
 
 </script>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <title>pan-book-admin</title>
+    </head>
+    <body>
+        <button onclick="deb()">
+            点击触发
+        </button>
+    </body>
+</html>
+    
+<script>
+
+function debounce(fn, delay){
+    var timer
+    return function(){
+        var context = this
+        var args = arguments
+        clearTimeout(timer)
+        timer = setTimeout(function(){
+            fn.apply(context, args)
+        }, delay)
+    }
+}
+
+function lazyLog(){
+    console.log('123')
+}
+const deb = debounce(lazyLog, 1000)
+</script>

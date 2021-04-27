@@ -180,7 +180,95 @@
     // }
     // console.log(sorts(arr));
     
-    console.log([] == 'undefined')
+    // const PENDING = 'PENDING';
+    // const RESOLVED = 'RESOLVED';
+    // const REJECTED = 'REJECTED';
+
+    // class myPromise{
+    //     constructor(exeructor){
+    //         this.status = PENDING;
+    //         this.value = undefined;
+    //         this.reason = undefined;
+    //         this.onResolvedCallbacks = []
+    //         this.onRejectedCallbacks = []
+            
+    //         let resolve = (value)=>{
+    //             if(this.status === PENDING){
+    //                 this.status = RESOLVED;
+    //                 this.value = value;
+    //                 this.onResolvedCallbacks.forEach(fn=>fn())
+    //             }
+    //         }
+
+    //         let reject = (reason)=>{
+    //             if(this.status === PENDING){
+    //                 this.status = REJECTED;
+    //                 this.reason = reason;
+    //                 this.onRejectedCallbacks.forEach(fn=>fn())
+    //             }
+    //         }
+
+    //         try{
+    //             exeructor(resolve, reject)
+    //         }catch(error){
+    //             reject(error)
+    //         }
+    //     }
+
+    //     then(onFulfilled, onRejected){
+    //         if(this.status === RESOLVED){
+    //             onFulfilled(this.value)
+    //         }
+
+    //         if(this.status === REJECTED){
+    //             onRejected(this.reason)
+    //         }
+
+    //         if(this.status === PENDING){
+    //             this.onResolvedCallbacks.push(()=>{
+    //                 onFulfilled(this.value)
+    //             })
+
+    //             this.onRejectedCallbacks.push(()=>{
+    //                 onRejected(this.reason)
+    //             })
+    //         }
+    //     }
+    // }
+
+    // const mp = new myPromise((resolve, reject)=>{
+    //     setTimeout(()=>{
+    //         resolve('2')
+    //     }, 1000)
+    // }).then(res=>{
+    //     console.log(res)
+    // })
+
+
+    const p1 = new Promise((resolve, reject)=>{
+        setTimeout(()=>{
+            resolve('成功了')
+        },2100)
+    })
+
+    const p2 = new Promise((resolve, reject)=>{
+        setTimeout(()=>{
+            resolve('也成功了')
+        },2000)
+    })
+
+    const p3 = Promise.reject('失败')
+
+    Promise.race([p1,p2]).then((res)=>{
+        console.log(res)
+    }).catch((error)=>{
+        console.log(error)
+    })
+
+
+
+
+
 
 
 </script>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <title>pan-book-admin</title>
+    </head>
+    <body>
+    </body>
+</html>
+    
+<script>
+var arr = [1,2,3,9,5,7,6,8,4]
+function qsorts(arr){
+    if(err.length<=1) {return arr}
+    var pinx = Math.floor(arr.length / 2)
+    var pvot = arr.splice(pidx, 1)[0]
+    var left = []
+    var right = []
+    for(var i = 0; i<arr.length; i++){
+        if(arr[i] < pvot){
+            left.push(arr[i])
+        }else{
+            right.push(arr[i])
+        }
+    }
+    return qsorts(left).concat([pinx], qsorts(right))
+}
+console.log(sorts(arr));
+
+
+</script>

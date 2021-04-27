@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <title>pan-book-admin</title>
+    </head>
+    <body>
+        <div>
+            this指向在函数定义的时候是无法确定的，只有函数执行时才能取得定this到底指向谁，实际上this最终指向是那个调用他的对象
+        </div>
+    </body>
+</html>
+    
+<script>
+
+// function a(){
+//     var user = 'aa'
+//     console.log(user)
+//     console.log(this.user)
+// }
+// user = 'bb'
+// a()
+// window.a()
+
+
+
+// var o = {
+//     user: 'qwe',
+//     fn: function(){
+//         console.log(this.user) 
+//         console.log(user) 
+//     }
+// }
+// user='ewq'
+// o.fn()
+// window.o.fn()
+
+
+// var o = {
+//     user: 'x',
+//     b: {
+//         user: 'y',
+//         fn: function(){
+//             user = 'z',
+//             console.log(this.user)
+//             console.log(user)
+//         }
+//     }
+// }
+// o.b.fn()
+// window.o.b.fn()
+
+let a = {}
+let b = ''
+let c = null
+console.log(Boolean(b||c))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>

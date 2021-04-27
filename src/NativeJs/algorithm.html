@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <title>pan-book-admin</title>
+    </head>
+    <body>
+    </body>
+</html>
+    
+<script>
+//判断是否为丑数
+var isUgly = function(n) {
+   if(n <= 0) return false
+   if(n ===1 ) return true
+   if(n%2 === 0){
+       n = n/2
+       return isUgly(n)
+   }
+   if(n%3 === 0){
+       n = n/3
+       return isUgly(n)
+   }
+   if(n%5 === 0){
+       n = n/5
+       return isUgly(n)
+   }
+   return false
+};
+console.log('判断是14否为丑数', isUgly(14))
+
+//反转字符串
+var reverse = function(x) {
+    if(x<Math.pow(-2, 31) || x>Math.pow(2, 31)) return 0
+    let _x = String(x)
+    let arr = []
+    if(_x[0] == '-' || _x[0] == '+'){
+        resx = _x.slice(1, _x.length)
+        for(var i=resx.length-1;i>=0;i--){
+            arr.push(resx[i])
+        }
+        return `${_x[0]}${arr.join('')}`
+    }else{
+        for(var i=_x.length-1;i>=0;i--){
+            arr.push(_x[i])
+        }
+        return arr.join('')
+    }
+};
+console.log(reverse(-1534236469))
+
+</script>
