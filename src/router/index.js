@@ -6,7 +6,7 @@ import OrderList from '@/views/bookManagement/orderCenter';
 import BookManagement from '@/views/bookManagement/bookCenter';
 import UserCenter from '@/views/systemManagement/userCenter';
 import NotFound from '@/404';
-import Lottery from '../views/H5/index.vue'
+import Lottery from '../views/H5/Lottery/index.vue'
 
 Vue.use(Router);
 
