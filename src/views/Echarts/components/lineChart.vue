@@ -1,5 +1,6 @@
 <template>
     <div class="lineChart">
+        <div>折线图</div>
         <div id="myLineChartChart" :style="estyle"></div>
     </div>
 </template>
@@ -42,7 +43,7 @@ export default {
             const myLineChartChart = echarts.init(document.getElementById('myLineChartChart'))
             // 绘制图表
             myLineChartChart.setOption({
-                title: { text: '在Vue中使用echarts折线图' },
+                // title: { text: '在Vue中使用echarts折线图' },
                 xAxis: {
                     type: 'category',
                     data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],

@@ -1,5 +1,6 @@
 <template>
     <div class="histogram">
+        <div>漏斗图</div>
         <div id="myFunnelFigureChart" :style="estyle"></div>
     </div>
 </template>
@@ -45,10 +46,10 @@ export default {
             const myFunnelFigureChart = echarts.init(document.getElementById('myFunnelFigureChart'))
             // 绘制图表
             myFunnelFigureChart.setOption({
-                title: {
-                    text: '漏斗图',
-                    subtext: '纯属虚构',
-                },
+                // title: {
+                //     text: '漏斗图',
+                //     subtext: '纯属虚构',
+                // },
                 tooltip: {
                     trigger: 'item',
                     formatter: '{a} <br/>{b} : {c}%',
@@ -61,7 +62,7 @@ export default {
                     },
                 },
                 legend: {
-                    data: ['展现', '点击', '访问', '咨询', '订单'],
+                    data: ['新增供应商数', '入库供应商数', '出价供应商数', '产生订单供应商数'],
                 },
 
                 series: [
@@ -75,7 +76,7 @@ export default {
                         width: '80%',
                         // height: {totalHeight} - y - y2,
                         min: 0,
-                        max: 100,
+                        max: 1000,
                         minSize: '0%',
                         maxSize: '100%',
                         sort: 'descending',
@@ -101,11 +102,10 @@ export default {
                             },
                         },
                         data: [
-                            { value: 60, name: '访问' },
-                            { value: 40, name: '咨询' },
-                            { value: 20, name: '订单' },
-                            { value: 80, name: '点击' },
-                            { value: 100, name: '展现' },
+                            { value: 560, name: '产生订单供应商数' },
+                            { value: 620, name: '出价供应商数' },
+                            { value: 700, name: '入库供应商数' },
+                            { value: 1000, name: '新增供应商数' },
                         ],
                     },
                 ],

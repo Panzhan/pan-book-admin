@@ -1,5 +1,6 @@
 <template>
     <div class="lineChart">
+        <div>饼状图</div>
         <div id="myPieChart" :style="estyle"></div>
     </div>
 </template>
@@ -46,7 +47,7 @@ export default {
             myPieChart.setOption({
                 title: {
                     text: '某站点用户访问来源',
-                    subtext: '纯属虚构',
+                    // subtext: '纯属虚构',
                     left: 'center',
                 },
                 tooltip: {

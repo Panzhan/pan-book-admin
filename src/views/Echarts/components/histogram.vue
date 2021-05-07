@@ -1,5 +1,6 @@
 <template>
     <div class="histogram">
+        <div>柱状图</div>
         <div id="myHistogramChart" :style="estyle"></div>
     </div>
 </template>
@@ -45,7 +46,7 @@ export default {
             const myHistogramChart = echarts.init(document.getElementById('myHistogramChart'))
             // 绘制图表
             myHistogramChart.setOption({
-                title: { text: '在Vue中使用echarts柱状图' },
+                // title: { text: '在Vue中使用echarts柱状图' },
                 tooltip: {},
                 xAxis: {
                     data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子'],

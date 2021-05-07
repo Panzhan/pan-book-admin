@@ -1,5 +1,6 @@
 <template>
     <div class="histogram">
+        <div>堆叠区域图</div>
         <div id="myRegionalFigure" :style="estyle"></div>
     </div>
 </template>
@@ -45,9 +46,9 @@ export default {
             const myRegionalFigure = echarts.init(document.getElementById('myRegionalFigure'))
             // 绘制图表
             myRegionalFigure.setOption({
-                title: {
-                    text: '堆叠区域图',
-                },
+                // title: {
+                //     text: '堆叠区域图',
+                // },
                 tooltip: {
                     trigger: 'axis',
                     axisPointer: {

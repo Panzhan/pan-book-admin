@@ -1,5 +1,6 @@
 <template>
     <div class="lineChart">
+        <div>柱状对比图</div>
         <div id="myHistogramComparison" :style="estyle"></div>
     </div>
 </template>
