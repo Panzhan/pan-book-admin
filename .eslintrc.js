@@ -52,7 +52,10 @@ module.exports = {
         }],
         // allow debugger during development
         'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+
+        // 下两项配置允许使用定义变量不使用
         "no-unused-vars": "off",
+        "vue/no-unused-components": "off",
         // 允许console.log, 否则需要加上window.console.log()
         "no-console":"off",
     }

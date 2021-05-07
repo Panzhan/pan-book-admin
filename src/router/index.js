@@ -7,7 +7,7 @@ import BookManagement from '@/views/bookManagement/bookCenter'
 import UserCenter from '@/views/systemManagement/userCenter'
 import NotFound from '@/404'
 import Lottery from '@/views/H5/Lottery/index'
-import Histogram from '@/views/echarts/histogram'
+import Echarts from '@/views/Echarts/index'
 
 Vue.use(Router)
 
@@ -70,9 +70,9 @@ export default new Router({
                     },
                 },
                 {
-                    path: '/histogram',
-                    name: 'Histogram',
-                    component: Histogram,
+                    path: '/echarts',
+                    name: 'Echarts',
+                    component: Echarts,
                     meta: {
                         label: '柱状图',
                     },

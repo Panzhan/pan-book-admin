@@ -5,8 +5,10 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from 'axios'
+// eslint-disable-next-line import/extensions
 import CONFIG from '@/config/bookListConfig.js'
+
 export default {
     name: 'User-Center',
     data() {
@@ -18,7 +20,7 @@ export default {
                 book_type: '',
                 author: '',
             },
-        };
+        }
     },
     created() {
     },
@@ -26,22 +28,22 @@ export default {
         this.title = this.$route.meta.label
         console.log('this.$route', this.$route.meta)
     },
-    methods:{
+    methods: {
         handleSearch() {
-            console.log('submit!');
+            console.log('submit!')
         },
         handleGetData(){
             axios.get('https://api.coindesk.com/v1/bpi/currentprice.json', {})
-            .then( res => {
-                console.log(res);
-                this.msg = res.data.chartName
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+                .then((res) => {
+                    console.log(res)
+                    this.msg = res.data.chartName
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
         },
-    }
-};
+    },
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

@@ -1,6 +1,6 @@
 <template>
     <div class="histogram">
-        <div id="myChart" :style="{width: '300px', height: '300px', border: '1px solid red'}"></div>
+        <div id="myHistogramChart" :style="estyle"></div>
     </div>
 </template>
 
@@ -25,6 +25,9 @@ echarts.use(
 
 export default {
     name: 'histogram',
+    props: {
+        estyle: Object,
+    },
     components: { },
     data() {
         return {
@@ -32,15 +35,16 @@ export default {
     },
     created() { },
     mounted() {
+        console.log('estyle', this.estyle)
         this.drawLine()
     },
     methods: {
         drawLine() {
-            window.console.log('this.$echarts', echarts)
+            console.log('echarts', echarts)
             // 基于准备好的dom，初始化echarts实例
-            const myChart = echarts.init(document.getElementById('myChart'))
+            const myHistogramChart = echarts.init(document.getElementById('myHistogramChart'))
             // 绘制图表
-            myChart.setOption({
+            myHistogramChart.setOption({
                 title: { text: '在Vue中使用echarts柱状图' },
                 tooltip: {},
                 xAxis: {
