@@ -6,27 +6,27 @@
         </div>
         <el-form :inline="true" :model="form" class="form_container demo-form-inline">
             <el-form-item label="测试">
-                <el-input 
-                    :size="commonSize" 
-                    v-model="form.test" 
+                <el-input
+                    :size='commonSize'
+                    v-model="form.test"
                     placeholder="测试输入框"
                     @input="handleInputChange(form.price)"
                 >
                 </el-input>
             </el-form-item>
             <el-form-item label="价格">
-                <el-input 
-                    :size="commonSize" 
-                    v-model="form.price" 
+                <el-input
+                    :size="commonSize"
+                    v-model="form.price"
                     placeholder="输入价格"
                     @input="handleInputChange(form.price)"
                 >
                 </el-input>
             </el-form-item>
             <el-form-item label="书名">
-                <el-select 
-                    :size="commonSize" 
-                    v-model="book_name" 
+                <el-select
+                    :size="commonSize"
+                    v-model="book_name"
                     placeholder="选择书名"
                     @change="handleSelectChange($event, 'book_name')"
                 >
@@ -40,9 +40,9 @@
                 </el-select>
             </el-form-item>
             <el-form-item label="类型">
-                <el-select 
-                    :size="commonSize" 
-                    v-model="book_type" 
+                <el-select
+                    :size="commonSize"
+                    v-model="book_type"
                     placeholder="选择书籍类型"
                     @change="handleSelectChange($event, 'book_type')"
                 >
@@ -56,9 +56,9 @@
                 </el-select>
             </el-form-item>
             <el-form-item label="作者">
-                <el-select 
-                    :size="commonSize" 
-                    v-model="author" 
+                <el-select
+                    :size="commonSize"
+                    v-model="author"
                     placeholder="选择作者"
                     @change="handleSelectChange($event, 'author')"
                 >
@@ -106,8 +106,8 @@
                             {{ val }}
                         </p>
                         <p class="info_num">
-                            {{ 
-                                key === 'book_price' ? '¥' + `${item[key]}` : item[key] 
+                            {{
+                                key === 'book_price' ? '¥' + `${item[key]}` : item[key]
                             }}
                         </p>
                     </div>
@@ -118,9 +118,12 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from 'axios'
+// eslint-disable-next-line import/extensions
 import CONFIG from '@/config/bookListConfig.js'
-import debounce from 'lodash/debounce';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import debounce from 'lodash/debounce'
+
 export default {
     name: 'BookList',
     data() {
@@ -129,22 +132,22 @@ export default {
             title: '',
             commonSize: 'mini',
             bookInfoList: {
-                'book_author': '作者',
-                'book_price': '价格',
-                'book_sell': '销量',
-                'book_type_str': '类型',
+                book_author: '作者',
+                book_price: '价格',
+                book_sell: '销量',
+                book_type_str: '类型',
             },
             bookNameList: [
-                {id: 0, name: '十万个为什么（一）'},
-                {id: 1, name: '十万个为什么（二）'}
+                { id: 0, name: '十万个为什么（一）' },
+                { id: 1, name: '十万个为什么（二）' },
             ],
             bookTypeList: [
-                {id: 0, name: '考古'},
-                {id: 1, name: '科技'}
+                { id: 0, name: '考古' },
+                { id: 1, name: '科技' },
             ],
             bookAuthorList: [
-                {id: 0, name: 'Sauron'},
-                {id: 1, name: 'Nicholas'}
+                { id: 0, name: 'Sauron' },
+                { id: 1, name: 'Nicholas' },
             ],
             bookList: CONFIG.bookList,
             price: '',
@@ -156,39 +159,43 @@ export default {
                 book_name: '',
                 book_type: '',
                 author: '',
-                test:[1,2,3],
+                test: [1, 2, 3],
                 // test:'123'
-            }
-        };
+            },
+        }
     },
     created() {
         this.handleTest()
     },
     mounted() {
         this.title = this.$route.meta.label
-        console.log('this.$route', this.$route.meta)
+        window.console.log('this.$route', this.$route.meta)
     },
-    methods:{
+    methods: {
         getScroll(event) {
             // 滚动条距离底部的距离scrollBottom
             // scrollHeight:只读属性是一个元素的内容的高度，包括由于溢出的内容在屏幕上不可见的测量
             // scrollTop:属性获取或设置元素内容垂直滚动的像素数
             // clientHeight:没有CSS或内联布局框的元素的只读属性为零；否则，它是元素的内部高度（以像素为单位）。它包括填充，但不包括边框，边距和水平滚动条（如果存在）
 
-            let scrollBottom = event.target.scrollHeight - event.target.scrollTop - event.target.clientHeight;
+            // eslint-disable-next-line max-len
+            const scrollBottom = event.target.scrollHeight - event.target.scrollTop - event.target.clientHeight
             if (scrollBottom <= 10) {
-                //返回成功后再请求接口
+                // 返回成功后再请求接口
                 // console.log('快到底了！')
+            // eslint-disable-next-line no-empty
             } else {
-                return;
+
             }
         },
         handleSelectChange(val, type) {
             this.form[type] = this[type]
             this.handleSearch()
         },
-        handleInputChange: debounce(function(value) {
-            this.handleSearch();
+        // eslint-disable-next-line func-names
+        handleInputChange: debounce(function (value) {
+            window.console.log(value)
+            this.handleSearch()
         }, 1000),
         handleClick() {
             this.dialogVisible = true
@@ -205,25 +212,25 @@ export default {
         },
         handleSearch() {
             // this.form.test[1]=41
-            this.$set(this.form.test, 1, 444); //$set 可以触发更新视图
+            this.$set(this.form.test, 1, 444) // $set 可以触发更新视图
             // this.form.test = '134'
-            console.log('submit!');
+            window.console.log('submit!')
         },
-        handleGetData(){
+        handleGetData() {
             axios.get('https://api.coindesk.com/v1/bpi/currentprice.json', {})
-            .then( res => {
-                console.log(res);
-                this.msg = res.data.chartName
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+                .then((res) => {
+                    window.console.log(res)
+                    this.msg = res.data.chartName
+                })
+                .catch((error) => {
+                    window.console.log(error)
+                })
         },
         handleTest() {
 
-        }
-    }
-};
+        },
+    },
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -239,7 +246,7 @@ export default {
             cursor:pointer;
             .el-icon-shopping-cart-full{
                 color: rgba(71, 71, 71, 1)
-            }    
+            }
         }
         .user_shopping:hover{
             .el-icon-shopping-cart-full{

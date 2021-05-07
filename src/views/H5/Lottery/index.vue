@@ -29,9 +29,9 @@
 <script>
 const LOTTERY_LIST = [0, 1, 2, 5, 8, 7, 6, 3]
 const LOTTERYRESULT = {
-    award: 'AWARD',
-    err: 'ERR',
-    noAward: 'noAward'
+    AWARD: 'AWARD',
+    ERR: 'ERR',
+    NOAWARD: 'NOAWARD',
 }
 const INDEX_MAP = {
     0: 0,
@@ -41,7 +41,7 @@ const INDEX_MAP = {
     4: 8,
     5: 7,
     6: 6,
-    7: 3
+    7: 3,
 }
 const REWORDLIST = [
     {
@@ -83,7 +83,7 @@ const REWORDLIST = [
         id: '8',
         awardName: '米家护眼灯',
         imgUrl: require('../images/light.png'),
-    }
+    },
 ]
 export default {
     props: {},
@@ -95,7 +95,7 @@ export default {
             centerDialogVisible: false,
             award: {},
             resAwardId: '',
-            getLotteryResult: ''
+            getLotteryResult: '',
         }
     },
     created() {},
@@ -103,10 +103,11 @@ export default {
     methods: {
         // 随机数，用于模拟接口生成奖品
         getRandom(lower, upper) {
-            return Math.floor(Math.random() * (upper - lower+1)) + lower;
-        }, 
+            // eslint-disable-next-line no-mixed-operators
+            return Math.floor(Math.random() * (upper - lower + 1)) + lower
+        },
         handleStart(val){
-            if(!this.isDone) return
+            if (!this.isDone) return
             this.handleLottery()
         },
         pickIndex(val, arr) {
@@ -114,20 +115,20 @@ export default {
             return INDEX_MAP[remainIndex]
         },
         // 获取中奖后奖品相关信息
-        getUserPrize(){
+        getPrizeMockInterface(){
             this.resAwardId = this.getRandom(1, 8)
-            console.log('奖品ID', this.resAwardId)
+            console.log('中奖奖品ID', this.resAwardId)
             this.resPrizeIndex = this.searchIndexById(this.resAwardId)
-            console.log('奖品位置', this.resPrizeIndex)
+            console.log('中奖奖品位置', this.resPrizeIndex)
             this.award = this.searchRewordById(this.resAwardId)
-            console.log('奖品', this.award)
-            this.getLotteryResult = 'award'
+            console.log('中奖奖品', this.award)
+            this.getLotteryResult = LOTTERYRESULT.AWARD
         },
         // 根据id匹配奖品属性
         searchRewordById(val) {
             let res = {}
-            REWORDLIST.forEach((it,idx)=>{
-                if(it.id === String(val)){
+            REWORDLIST.forEach((it, idx) => {
+                if (it.id === String(val)){
                     res = it
                 }
             })
@@ -138,7 +139,7 @@ export default {
             let resIdx
             this.rewordLst.forEach((it, idx) => {
                 if (it.id === String(val)) {
-                    resIdx = idx //中奖的index
+                    resIdx = idx // 中奖的index
                 }
             })
             return resIdx
@@ -146,27 +147,27 @@ export default {
         handleLottery() {
             this.isDone = false
             setTimeout(() => {
-                this.getUserPrize()
+                this.getPrizeMockInterface()
             }, 1000)
             let prizeIndex = -1
-            let prizeIndexArr = []
-            let timer = setInterval(() => {
-                prizeIndex++ //当前index，累加计算结果
+            const prizeIndexArr = []
+            const timer = setInterval(() => {
+                prizeIndex += 1 // 当前index，累加计算结果
                 prizeIndexArr.push(prizeIndex)
-                let resIndex = this.pickIndex(prizeIndex, prizeIndexArr) // 旋转时当前index，不累加
+                const resIndex = this.pickIndex(prizeIndex, prizeIndexArr) // 旋转时当前index，不累加
                 // 更改rewordLst状态
                 this.rewordLst[resIndex].picked = true
                 this.rewordLst.forEach((it, idx) => {
                     if (idx !== resIndex) this.rewordLst[idx].picked = false
                 })
-                if (this.getLotteryResult === 'award') {
-                    //// 接口调用成功有奖品
+                if (this.getLotteryResult === LOTTERYRESULT.AWARD) {
+                    // // 接口调用成功有奖品
                     clearInterval(timer)
                     this.continueLotteryGradient(resIndex, this.resPrizeIndex, prizeIndex, prizeIndexArr)
-                } else if (this.getLotteryResult === 'err') {
-                    //接口异常
+                } else if (this.getLotteryResult === LOTTERYRESULT.ERR) {
+                    // 接口异常
                     // clearInterval(timer)
-                } else if (this.getLotteryResult === 'noAward') {
+                } else if (this.getLotteryResult === LOTTERYRESULT.NOAWARD) {
                     // 未中奖
                     // clearInterval(timer)
                 }
@@ -175,20 +176,23 @@ export default {
         continueLotteryGradient(nowIndex, interfacePrizeIndex, totalIndex, totalIndexArr) {
             const self = this
             // 旋转至接口有返回时当前index，接口返回的奖品的index，旋转累记的index，旋转累记的index数组
-            let secondArr = [...totalIndexArr] //有接口返回后旋转累记的index数组
-            let secondStartIndex = totalIndex //有接口返回后起始index
+            const secondArr = [...totalIndexArr] // 有接口返回后旋转累记的index数组
+            let secondStartIndex = totalIndex // 有接口返回后起始index
             let nowToInterfaceLength = 0
-            let len = LOTTERY_LIST.indexOf(interfacePrizeIndex) - LOTTERY_LIST.indexOf(nowIndex) // 接口有返回是index与奖品index间距
+            const len = LOTTERY_LIST.indexOf(interfacePrizeIndex) - LOTTERY_LIST.indexOf(nowIndex) // 接口有返回是index与奖品index间距
             nowToInterfaceLength = len > 0 ? len : len + 8
             nowToInterfaceLength = nowToInterfaceLength < 4 ? nowToInterfaceLength + 8 : nowToInterfaceLength
             let gap = 60
-            let timer = 60
+            const timer = 60
             let maxGap
+            // eslint-disable-next-line no-use-before-define
             let set1 = setInterval(fn, gap)
             function fn() {
-                secondStartIndex++
+                secondStartIndex += 1
                 secondArr.push(secondStartIndex)
-                let _resIndex = self.pickIndex(secondStartIndex, secondArr)
+                // eslint-disable-next-line no-underscore-dangle
+                const _resIndex = self.pickIndex(secondStartIndex, secondArr)
+                // eslint-disable-next-line no-underscore-dangle
                 self.rewordLst[_resIndex].picked = true
                 self.rewordLst.forEach((it, idx) => {
                     if (idx !== _resIndex) self.rewordLst[idx].picked = false
@@ -198,9 +202,9 @@ export default {
                 maxGap = nowToInterfaceLength * timer
                 if (gap === maxGap + timer) {
                     setTimeout(() => {
-                        setTimeout(()=>{
+                        setTimeout(() => {
                             self.centerDialogVisible = true
-                        },1000)
+                        }, 1000)
                         self.isDone = true
                         self.rewordLst.forEach((it, idx) => {
                             self.rewordLst[idx].picked = false
@@ -214,7 +218,8 @@ export default {
         },
         // 初始化处理奖品
         initialization(list){
-            let _list = list.concat();
+            // eslint-disable-next-line no-underscore-dangle
+            const _list = list.concat()
             _list.splice(4, 0, {
                 id: '',
                 awardName: '立即抽奖',
@@ -222,24 +227,27 @@ export default {
                 vid: '5',
                 lotteryingImgUrl: require('../images/lotterying.png'),
             })
-            _list.forEach((it,idx)=>{
+            _list.forEach((it, idx) => {
+                // eslint-disable-next-line no-param-reassign
                 it.vid = idx + 1
+                // eslint-disable-next-line no-param-reassign
                 it.picked = false
             })
             return _list
         },
         // 关闭弹窗
-        handleClose()  {
+        handleClose() {
             this.centerDialogVisible = false
             window.location.reload()
         },
         showImg(it){
-            if(it.vid == 5){
-                if(!this.isDone) return it.lotteryingImgUrl
+            // eslint-disable-next-line eqeqeq
+            if (it.vid == 5){
+                if (!this.isDone) return it.lotteryingImgUrl
             }
             return it.imgUrl
-        }
-    }
+        },
+    },
 }
 
 </script>
@@ -271,7 +279,7 @@ export default {
                 border-radius: 24px;
             }
             img{
-                width: @comImgBoxWidth; 
+                width: @comImgBoxWidth;
                 height: @comImgBoxWidth;
             }
         }

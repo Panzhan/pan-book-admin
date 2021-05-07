@@ -13,6 +13,7 @@
     "dependencies": {
         "axios": "^0.20.0",
         "debounce": "^1.2.0",
+        "echarts": "^5.1.1",
         "element-ui": "^2.13.2",
         "less-loader": "^4.1.0",
         "vue": "^2.5.2",

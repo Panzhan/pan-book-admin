@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 <template>
     <div class="home_max_container">
         <!-- 头部 -->
@@ -62,33 +63,35 @@
 
 <script>
 import { mapState, mapActions } from 'vuex';
+// eslint-disable-next-line no-unused-vars
 import axios from 'axios';
-import CONFIG from '@/config/homeRouterConfig.js'
+// eslint-disable-next-line import/extensions
+import CONFIG from '@/config/homeRouterConfig.js';
 
-let VUEX_KEY = 'home'; // vuex 模块标示
+const VUEX_KEY = 'home'; // vuex 模块标示
 export default {
     name: 'HelloWorld',
     data() {
         return {
-            aas: ["ss","ddd","fff","bbb"],
+            aas: ['ss', 'ddd', 'fff', 'bbb'],
             oobbjj: {
                 a: 1,
-                b: 2
+                b: 2,
             },
             userInfo: CONFIG.userInfo,
             menuList: CONFIG.menuList,
             isCollapse: false,
-            SauronMeun: ['1','2','3','5','6']
+            SauronMeun: ['1', '2', '3', '5', '6'],
         };
     },
     computed: {
-        ...mapState(['pageSize']), //index路径下的state
-        ...mapState(VUEX_KEY, ['testStr', 'testDate']) //对应模块下的state
+        ...mapState(['pageSize']), // index路径下的state
+        ...mapState(VUEX_KEY, ['testStr', 'testDate']), // 对应模块下的state
     },
     created() {
-        let path = this.$route.path
+        const path = this.$route.path;
         // console.log('this.$router', this.$route.path)
-        if(path === '/') {
+        if (path === '/') {
             this.$router.push('/book-list');
         }
         // this.getUserInfo('userInfo', this.userInfo)
@@ -98,49 +101,49 @@ export default {
         // console.log('pageSize', this.pageSize)
         localStorage.setItem(`${this.userInfo.user_name}-info`, JSON.stringify(this.SauronMeun));
     },
-    methods:{
-        ...mapActions(VUEX_KEY, ['updateString', 'updateDate']
+    methods: {
+        ...mapActions(VUEX_KEY, ['updateString', 'updateDate'],
         ),
-        change(){
+        change() {
         // 点击按钮时，改变aas的最后一个元素，
         // 数据变了 但是view没有更新
             // this.aas[3] = 444;
             // this.aas = ["ss","ddd","fff","bbb","www"]
-            this.aas[6] = "222"
-            this.oobbjj.c = 23
-            console.log(this.oobbjj, 'oobbjj')
+            this.aas[6] = '222';
+            this.oobbjj.c = 23;
+            window.console.log(this.oobbjj, 'oobbjj');
             // console.log(this.aas, '12341243123')
         },
-        handleTestVuexText() { 
-            let paramsStr = 'string2'
+        handleTestVuexText() {
+            const paramsStr = 'string2';
             this.updateString(paramsStr).then(
-                e => {
-                    console.log('afterString by handleTestVuexText', this.testStr)
-                }
-            )
+                () => {
+                    window.console.log('afterString by handleTestVuexText', this.testStr);
+                },
+            );
         },
         handleTestVuexImg() {
             this.updateDate().then(
-                e => {
-                    console.log('afterDate by handleTestVuexImg', this.testDate)
-                }
-            )
+                () => {
+                    window.console.log('afterDate by handleTestVuexImg', this.testDate);
+                },
+            );
         },
         handleCopyUserName(val) {
             this.$copyText(val).then(
-                e => {
-                    this.$message.success('用户姓名'+ val + '复制成功!')
+                () => {
+                    this.$message.success(`用户姓名${val}复制成功!`);
                     this.updateString().then(
-                        e => {
-                            console.log('afterString by handleCopyUserName', this.testStr)
-                        }
-                    )
-                }
-            )
+                        () => {
+                            window.console.log('afterString by handleCopyUserName', this.testStr);
+                        },
+                    );
+                },
+            );
         },
         handleOpen() {},
         handleClose() {},
-        getUserInfo(){
+        getUserInfo() {
             // axios.get('https://run.mocky.io/v3/4552b124-dead-4f6a-b965-adc5947bc0a6', {})
             // .then(res => {
             //     console.log('res', res)
@@ -151,7 +154,7 @@ export default {
             //     console.log(error);
             // });
         },
-    }
+    },
 };
 </script>
 

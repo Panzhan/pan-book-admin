@@ -25,6 +25,11 @@ module.exports = {
     },
     // add your custom rules here
     rules: {
+        "space-before-blocks": 0,
+        "global-require": 0,
+        "max-len" : ['error', {code : 600}],
+        // 不添加分号
+        "semi": [2, 'never'],
         // don't require .vue extension when importing
         'indent': ['error', 4], //缩进4个空格
         'import/extensions': ['error', 'always', {
@@ -46,7 +51,10 @@ module.exports = {
             optionalDependencies: ['test/unit/index.js']
         }],
         // allow debugger during development
-        'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
+        'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+        "no-unused-vars": "off",
+        // 允许console.log, 否则需要加上window.console.log()
+        "no-console":"off",
     }
 }
   

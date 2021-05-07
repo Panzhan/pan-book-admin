@@ -1,14 +1,15 @@
-import Vue from 'vue';
-import Router from 'vue-router';
-import Home from '@/Home';
-import BookList from '@/views/bookList/bookList';
-import OrderList from '@/views/bookManagement/orderCenter';
-import BookManagement from '@/views/bookManagement/bookCenter';
-import UserCenter from '@/views/systemManagement/userCenter';
-import NotFound from '@/404';
-import Lottery from '../views/H5/Lottery/index.vue'
+import Vue from 'vue'
+import Router from 'vue-router'
+import Home from '@/Home'
+import BookList from '@/views/bookList/bookList'
+import OrderList from '@/views/bookManagement/orderCenter'
+import BookManagement from '@/views/bookManagement/bookCenter'
+import UserCenter from '@/views/systemManagement/userCenter'
+import NotFound from '@/404'
+import Lottery from '@/views/H5/Lottery/index'
+import Histogram from '@/views/echarts/histogram'
 
-Vue.use(Router);
+Vue.use(Router)
 
 export default new Router({
     // 若有相同的path,会指向第一个
@@ -25,7 +26,7 @@ export default new Router({
                     component: BookList,
                     meta: {
                         label: '图书商城',
-                    }
+                    },
                 },
                 {
                     path: '/order-center',
@@ -33,7 +34,7 @@ export default new Router({
                     component: OrderList,
                     meta: {
                         label: '订单管理',
-                    }
+                    },
                 },
                 {
                     path: '/book-center',
@@ -41,7 +42,7 @@ export default new Router({
                     component: BookManagement,
                     meta: {
                         label: '图书管理',
-                    }
+                    },
                 },
                 {
                     path: '/user-center',
@@ -49,7 +50,7 @@ export default new Router({
                     component: UserCenter,
                     meta: {
                         label: '用户管理',
-                    }
+                    },
                 },
                 {
                     path: '/not-found',
@@ -57,7 +58,7 @@ export default new Router({
                     component: NotFound,
                     meta: {
                         label: '404',
-                    }
+                    },
                 },
                 // h5
                 {
@@ -66,10 +67,17 @@ export default new Router({
                     component: Lottery,
                     meta: {
                         label: '抽奖',
-                    }
+                    },
                 },
-            ]
-
+                {
+                    path: '/histogram',
+                    name: 'Histogram',
+                    component: Histogram,
+                    meta: {
+                        label: '柱状图',
+                    },
+                },
+            ],
         },
         {
             path: '/404',
@@ -77,7 +85,7 @@ export default new Router({
             component: NotFound,
             meta: {
                 label: '404',
-            }
+            },
         },
     ],
-});
+})

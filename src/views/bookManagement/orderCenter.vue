@@ -35,9 +35,11 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from 'axios'
+// eslint-disable-next-line import/extensions
 import CONFIG from '@/config/orderListConfig.js'
 import Table from './components/OrderTable'
+
 export default {
     name: 'Order-Center',
     components: {
@@ -56,61 +58,65 @@ export default {
             formInline: {
                 p_id: '',
                 p_status: '',
-            }
-        };
+            },
+        }
     },
     created() {},
     mounted() {
         this.title = this.$route.meta.label
         // console.log('this.$route', this.$route.meta)
     },
-    methods:{
+    methods: {
         getScroll(event) {
             // 滚动条距离底部的距离scrollBottom
             // scrollHeight:只读属性是一个元素的内容的高度，包括由于溢出的内容在屏幕上不可见的测量
             // scrollTop:属性获取或设置元素内容垂直滚动的像素数
             // clientHeight:没有CSS或内联布局框的元素的只读属性为零；否则，它是元素的内部高度（以像素为单位）。它包括填充，但不包括边框，边距和水平滚动条（如果存在）
 
-            let scrollBottom = event.target.scrollHeight - event.target.scrollTop - event.target.clientHeight;
+            // eslint-disable-next-line max-len
+            const scrollBottom = event.target.scrollHeight - event.target.scrollTop - event.target.clientHeight
             if (scrollBottom <= 10) {
-                //返回成功后再请求接口
+                // 返回成功后再请求接口
                 // console.log('快到底了！')
+            // eslint-disable-next-line no-empty
             } else {
-                return;
+
             }
         },
         handleCopy(val) {
             this.$copyText(val).then(
-                e => {
-                    this.$message.success(val + '' + '复制成功!')
-                }
+                () => {
+                    // eslint-disable-next-line no-useless-concat
+                    this.$message.success(`${val}` + '复制成功!')
+                },
             )
         },
         handleSearch() {
-            console.log('submit!');
+            window.console.log('submit!')
         },
         sumOrderAlianConfig() {
-            let configs = ['leftAlian', 'centerAlian', 'rightAlian']
-            let resOrderAlianConfig = {};
+            const configs = ['leftAlian', 'centerAlian', 'rightAlian']
+            const resOrderAlianConfig = {}
             // 数组通过map转化为对象
-            configs.map( item => {
-                resOrderAlianConfig[item] = this[item];
-            });
+            // eslint-disable-next-line array-callback-return
+            configs.map((item) => {
+                resOrderAlianConfig[item] = this[item]
+            })
             // console.log('resOrderAlianConfig', resOrderAlianConfig)
             return resOrderAlianConfig
         },
-        handleGetData(){
+        handleGetData() {
             axios.get('https://api.coindesk.com/v1/bpi/currentprice.json', {})
-            .then( res => {
-                console.log(res);
-                this.msg = res.data.chartName
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+                .then((res) => {
+                    window.console.log(res)
+                    this.msg = res.data.chartName
+                })
+                .catch((error) => {
+                    window.console.log(error)
+                })
         },
-    }
-};
+    },
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

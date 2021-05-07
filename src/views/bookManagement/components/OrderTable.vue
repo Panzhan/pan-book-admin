@@ -16,26 +16,26 @@
             >
                 <template slot-scope="scope">
                     <p v-if="!scope.row[item.value]">{{ "-" }}</p>
-                    <p 
+                    <p
                         class="status_text"
-                        :class="`status_${scope.row[item.value]}_color`" 
+                        :class="`status_${scope.row[item.value]}_color`"
                         v-else-if="item.value === 'p_status'"
                     >
                         {{ handleText(scope.row[item.value]) }}
                     </p>
-                    <p 
-                        v-else-if="item.value === 'phone'" 
+                    <p
+                        v-else-if="item.value === 'phone'"
                         @click="handleCopy(scope.row[item.value])"
                     >
                         <el-button type="text">
                             {{ scope.row[item.value] }}
                         </el-button>
                     </p>
-                    <p 
+                    <p
                         v-else-if="item.value === 'operation'"
                     >
-                        <el-button 
-                            :disabled="Boolean(scope.row[item.value].isDisable)" 
+                        <el-button
+                            :disabled="Boolean(scope.row[item.value].isDisable)"
                             type="text"
                         >
                             {{scope.row[item.value].title}}
@@ -49,30 +49,32 @@
 </template>
 
 <script>
+// eslint-disable-next-line import/extensions
 import CONFIG from '@/config/orderListConfig.js'
+
 export default {
     props: {
         tableData: {
             type: Array,
-            default: function() {
-                return [];
-            }
+            default() {
+                return []
+            },
         },
         orderAlianConfig: {
             type: Object,
-            default: function() {
-                return {};
-            }
+            default() {
+                return {}
+            },
         },
         cloumnList: {
             type: Array,
-            default: function() {
-                return [];
-            }
+            default() {
+                return []
+            },
         },
     },
     data() {
-        return {};
+        return {}
     },
     mounted() {
 
@@ -84,30 +86,33 @@ export default {
         handleAlian(valAlian) {
             // console.log('orderAlianConfig', this.orderAlianConfig)
             let result
-            for(let key  in this.orderAlianConfig){
-                if(this.orderAlianConfig[key].includes(valAlian)){
-                    result = key.split('Alian')[0];
+            // eslint-disable-next-line no-restricted-syntax
+            for (const key in this.orderAlianConfig) {
+                if (this.orderAlianConfig[key].includes(valAlian)) {
+                    result = key.split('Alian')[0]
                 }
             }
             return result
         },
         handleWidth(valWidth) {
-            switch(valWidth.length){
-                case 1:
-                    return 20;
-                case 2:
-                    return 30;
-                case 3:
-                    return 40;
-                case 4:
-                    return 50;
+            switch (valWidth.length) {
+            case 1:
+                return 20
+            case 2:
+                return 30
+            case 3:
+                return 40
+            case 4:
+                return 50
+            default:
+                return 20
             }
         },
         handleCopy(val) {
             this.$emit('handleCopy', val)
-        }
-    }
-};
+        },
+    },
+}
 </script>
 <style lang="less">
     .table_container{

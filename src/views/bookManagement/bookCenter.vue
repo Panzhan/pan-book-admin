@@ -5,8 +5,8 @@
 </template>
 
 <script>
-import axios from 'axios';
-import CONFIG from '@/config/bookListConfig.js'
+import axios from 'axios'
+
 export default {
     name: 'Book-Center',
     data() {
@@ -17,16 +17,17 @@ export default {
                 book_name: '',
                 book_type: '',
                 author: '',
-            }
-        };
+            },
+        }
     },
     created() {
     },
     mounted() {
         this.title = this.$route.meta.label
+        // eslint-disable-next-line no-console
         console.log('this.$route', this.$route.meta)
     },
-    methods:{
+    methods: {
         handleCopy() {
             // this.$copyText(this.msg).then(
             //     e => {
@@ -35,20 +36,23 @@ export default {
             // )
         },
         handleSearch() {
-            console.log('submit!');
+            // eslint-disable-next-line no-console
+            console.log('submit!')
         },
-        handleGetData(){
+        handleGetData() {
             axios.get('https://api.coindesk.com/v1/bpi/currentprice.json', {})
-            .then( res => {
-                console.log(res);
-                this.msg = res.data.chartName
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+                .then((res) => {
+                    // eslint-disable-next-line no-console
+                    console.log(res)
+                    this.msg = res.data.chartName
+                })
+                .catch((error) => {
+                    // eslint-disable-next-line no-console
+                    console.log(error)
+                })
         },
-    }
-};
+    },
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
