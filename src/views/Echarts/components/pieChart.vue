@@ -40,7 +40,6 @@ export default {
     },
     methods: {
         drawLine() {
-            console.log('echarts', echarts)
             // 基于准备好的dom，初始化echarts实例
             const myPieChart = echarts.init(document.getElementById('myPieChart'))
             // 绘制图表
@@ -56,6 +55,12 @@ export default {
                 legend: {
                     orient: 'vertical',
                     left: 'left',
+                    selected: {
+                        // 选中'系列1'
+                        '搜索引擎': true,
+                        // 不选中'系列2'
+                        '搜索引擎': false
+                    }
                 },
                 series: [
                     {
@@ -64,7 +69,7 @@ export default {
                         radius: '50%',
                         data: [
                             { value: 1048, name: '搜索引擎' },
-                            { value: 735, name: '直接访问' },
+                            { value: 735, name: '搜索引擎' },
                             { value: 580, name: '邮件营销' },
                             { value: 484, name: '联盟广告' },
                             { value: 300, name: '视频广告' },
@@ -73,7 +78,7 @@ export default {
                             itemStyle: {
                                 shadowBlur: 10,
                                 shadowOffsetX: 0,
-                                shadowColor: 'rgba(0, 0, 0, 0.5)',
+                                shadowColor: 'rgba(0, 0, 0, 0.5)'
                             },
                         },
                     },

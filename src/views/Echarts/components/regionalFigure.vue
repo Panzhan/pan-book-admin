@@ -41,7 +41,6 @@ export default {
     },
     methods: {
         drawLine() {
-            console.log('echarts', echarts)
             // 基于准备好的dom，初始化echarts实例
             const myRegionalFigure = echarts.init(document.getElementById('myRegionalFigure'))
             // 绘制图表
@@ -59,13 +58,25 @@ export default {
                     },
                 },
                 legend: {
-                    data: ['邮件营销', '联盟广告', '视频广告', '直接访问', '搜索引擎'],
-                },
-                toolbox: {
-                    feature: {
-                        saveAsImage: {},
+                    data: [
+                        {icon: 'image://http://csstools.chinaz.com/tools/images/public/logos/logo-index.png', name: '搜索引擎'},
+                        {icon: 'image://https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png', name: '直接访问'},
+                        {icon: 'image://https://du.hupucdn.com/FkxJuhPYYgKpD47ezne9Bu5I2chU?imageView2/0/format/webp', name: '邮件营销'},
+                        {icon: 'image://https://cdn.poizon.com/node-common/0dd36666168d2e83cf22635aba39a534.png?x-oss-process=image/format,webp', name: '联盟广告'},
+                        {icon: 'diamond', name: '视频广告'}
+                    ],
+                    itemGap: 100,
+                    itemWidth: 30,
+                    itemHeight: 30,
+                    formatter: (params) => {
+                        return '';
                     },
                 },
+                // toolbox: {
+                //     feature: {
+                //         saveAsImage: {},
+                //     },
+                // },
                 grid: {
                     left: '3%',
                     right: '4%',

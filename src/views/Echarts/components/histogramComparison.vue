@@ -59,7 +59,6 @@ export default {
     },
     methods: {
         drawLine() {
-            console.log('echarts', echarts)
             // 基于准备好的dom，初始化echarts实例
             const myHistogramComparison = echarts.init(document.getElementById('myHistogramComparison'))
             // 绘制图表
@@ -68,18 +67,18 @@ export default {
                     data: ['bar', 'bar2'],
                     left: '10%',
                 },
-                brush: {
-                    toolbox: ['rect', 'polygon', 'lineX', 'lineY', 'keep', 'clear'],
-                    xAxisIndex: 0,
-                },
-                toolbox: {
-                    feature: {
-                        magicType: {
-                            type: ['stack', 'tiled'],
-                        },
-                        dataView: {},
-                    },
-                },
+                // brush: {
+                //     toolbox: ['rect', 'polygon', 'lineX', 'lineY', 'keep', 'clear'],
+                //     xAxisIndex: 0,
+                // },
+                // toolbox: {
+                //     feature: {
+                //         magicType: {
+                //             type: ['stack', 'tiled'],
+                //         },
+                //         dataView: {},
+                //     },
+                // },
                 tooltip: {},
                 xAxis: {
                     data: xAxisData,

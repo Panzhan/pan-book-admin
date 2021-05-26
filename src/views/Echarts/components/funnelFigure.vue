@@ -36,12 +36,10 @@ export default {
     },
     created() { },
     mounted() {
-        console.log('estyle', this.estyle)
         this.drawLine()
     },
     methods: {
         drawLine() {
-            console.log('echarts', echarts)
             // 基于准备好的dom，初始化echarts实例
             const myFunnelFigureChart = echarts.init(document.getElementById('myFunnelFigureChart'))
             // 绘制图表
@@ -54,13 +52,13 @@ export default {
                     trigger: 'item',
                     formatter: '{a} <br/>{b} : {c}%',
                 },
-                toolbox: {
-                    feature: {
-                        dataView: { readOnly: false },
-                        restore: {},
-                        saveAsImage: {},
-                    },
-                },
+                // toolbox: {
+                //     feature: {
+                //         dataView: { readOnly: false },
+                //         restore: {},
+                //         saveAsImage: {},
+                //     },
+                // },
                 legend: {
                     data: ['新增供应商数', '入库供应商数', '出价供应商数', '产生订单供应商数'],
                 },

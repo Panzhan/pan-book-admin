@@ -38,7 +38,6 @@ export default {
     },
     methods: {
         drawLine() {
-            console.log('echarts', echarts)
             // 基于准备好的dom，初始化echarts实例
             const myLineChartChart = echarts.init(document.getElementById('myLineChartChart'))
             // 绘制图表

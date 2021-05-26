@@ -47,7 +47,9 @@ export default {
             setTimeout(() => {
                 const myManyGraph = echarts.init(document.getElementById('myManyGraph'))
                 const option = {
-                    legend: {},
+                    legend: {
+                        icon: 'rectangle',
+                    },
                     tooltip: {
                         trigger: 'axis',
                         showContent: false,

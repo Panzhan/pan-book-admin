@@ -36,12 +36,10 @@ export default {
     },
     created() { },
     mounted() {
-        console.log('estyle', this.estyle)
         this.drawLine()
     },
     methods: {
         drawLine() {
-            console.log('echarts', echarts)
             // 基于准备好的dom，初始化echarts实例
             const myHistogramChart = echarts.init(document.getElementById('myHistogramChart'))
             // 绘制图表
@@ -55,7 +53,13 @@ export default {
                 series: [{
                     name: '销量',
                     type: 'bar',
-                    data: [5, 20, 36, 10, 10, 20],
+                    data: [
+                        {
+                            value: 5,
+                            itemStyle: {
+                                color: 'red',
+                            },
+                        }, 20, 36, 10, 10, 20],
                 }],
             })
         },
