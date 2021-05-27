@@ -8,6 +8,5 @@
         });
     });
     console.log(" ".repeat(n - 1) + "*");
-    
     // console.log("~".repeat(n - 1) + "*~#~~###~~~~##~");
 })(5);
