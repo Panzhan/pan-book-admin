@@ -1,4 +1,4 @@
-# pan-book-admin
+# fizz-small-workshops
 
 > 
 
