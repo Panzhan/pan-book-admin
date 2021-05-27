@@ -1,4 +1,4 @@
-# fizz-small-workshops
+# Fizz-small-workshops
 
 > 
 
