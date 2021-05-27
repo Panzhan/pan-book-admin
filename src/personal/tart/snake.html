@@ -258,7 +258,6 @@
     }
     createPos() {
       let [x, y] = this.grid[(Math.random() * this.grid.length) | 0]
-
       for (let i = 0; i < this.snake.length; i++) {
         if (this.snake[i][0] == x && this.snake[i][1] == y) {
           return this.createPos()
