@@ -11,6 +11,7 @@
         "build": "node build/build.js"
     },
     "dependencies": {
+        "ant-design-vue": "^1.7.5",
         "axios": "^0.20.0",
         "debounce": "^1.2.0",
         "echarts": "^5.1.1",

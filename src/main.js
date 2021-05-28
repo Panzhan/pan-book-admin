@@ -11,6 +11,9 @@ import router from './router'
 // eslint-disable-next-line import/first
 import VueClipboard from 'vue-clipboard2'
 
+import Antd from 'ant-design-vue';
+import 'ant-design-vue/dist/antd.css';
+
 // eslint-disable-next-line import/first
 // import echarts from 'echarts';
 
@@ -18,6 +21,7 @@ import VueClipboard from 'vue-clipboard2'
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)
+Vue.use(Antd);
 Vue.use(VueClipboard)
 
 /* eslint-disable no-new */

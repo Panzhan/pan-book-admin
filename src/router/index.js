@@ -5,6 +5,7 @@ import BookList from '@/views/bookList/bookList'
 import OrderList from '@/views/bookManagement/orderCenter'
 import BookManagement from '@/views/bookManagement/bookCenter'
 import UserCenter from '@/views/systemManagement/userCenter'
+import Components from '../common/componentsView/index.vue'
 import NotFound from '@/404'
 import Lottery from '@/views/H5/Lottery/index'
 import Echarts from '@/views/Echarts/index'
@@ -75,6 +76,14 @@ export default new Router({
                     component: Echarts,
                     meta: {
                         label: '柱状图',
+                    },
+                },
+                {
+                    path: '/components',
+                    name: 'Components',
+                    component: Components,
+                    meta: {
+                        label: '基础组件',
                     },
                 },
             ],
