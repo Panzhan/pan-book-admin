@@ -167,8 +167,8 @@ export default {
             display: flex;
             width: 100%;
             height: 54px;
-            line-height: 54px;
-            background-color: rgba(40, 36, 33, 1);
+            background-color: rgb(61, 61, 61, 0.8);
+            align-items: center;
             cursor:pointer;
             .home_top_title{
                 padding-left: 22px;
@@ -180,11 +180,9 @@ export default {
                 right: 65px;
             }
             .home_top_user_logo_container{
-                margin-top: 6px;
                 border-radius: 50%;
                 width: 40px;
                 height: 40px;
-                border: 1px solid black;
                 position: absolute;
                 right: 10px;
                 .home_top_user_logo{
